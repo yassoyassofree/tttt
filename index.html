@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0d0d0d;
+            font-family: 'Courier New', Courier, monospace; /* Terminal-like font */
+            color: #33FF33; /* Green text color */
+        }
+        .container {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #33FF33; /* Green border */
+            padding-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+            color: #33FF33; /* Label color */
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #33FF33; /* Green border */
+            border-radius: 4px;
+            background-color: #0d0d0d; /* Dark background */
+            color: #33FF33; /* Text color */
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #28a745; /* Green color */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838; /* Darker green */
+        }
+        .alert {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Please Log In</h1>
+        <form id="loginForm" onsubmit="handleSubmit(event)">
+            <label for="username">Username:</label>
+            <input type="text" id="usernameInput" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="passwordInput" name="password" required>
+            <input type="submit" value="Submit">
+            <div class="alert" id="alertMessage"></div>
+        </form>
+    </div>
+
+    <script>
+        const users = {
+            "yassin7/4/2013": "Sino-742013",
+            "malek16/4/2013": "21twix",
+            "yaamen18/12/2012": "deadpool",
+            "hassan27/9/2013":"fa7mi",
+            "adham":"Fortnite",
+            "gest":"gest1234" 
+        };
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const usernameInput = document.getElementById('usernameInput').value;
+            const passwordInput = document.getElementById('passwordInput').value;
+            const alertMessage = document.getElementById('alertMessage');
+            alertMessage.textContent = ""; // Clear previous messages
+
+            // Check if the username is valid and password matches
+            if (users[usernameInput]) {
+                if (users[usernameInput] === passwordInput) {
+                    alertMessage.textContent = "Login successful!";
+                    alertMessage.style.color = "green";
+                    // Redirecting to another page
+                    window.location.href = "welcome.html"; // Change the name of the page as needed
+                } else {
+                    alertMessage.textContent = "Invalid password.";
+                }
+            } else {
+                alertMessage.textContent = "This username is not allowed.";
+            }
+        }
+    </script>
+</body>
+</html>
